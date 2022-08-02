@@ -1,8 +1,8 @@
-package mod.icy_turtle.icyutilities.event;
+package mod.icy_turtle.boatalignment.event;
 
-import mod.icy_turtle.icyutilities.IcyUtilitiesClient;
-import mod.icy_turtle.icyutilities.util.ModUtils;
-import mod.icy_turtle.icyutilities.util.RotationUtils;
+import mod.icy_turtle.boatalignment.BoatAlignment;
+import mod.icy_turtle.boatalignment.util.ModUtils;
+import mod.icy_turtle.boatalignment.util.RotationUtils;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
@@ -18,13 +18,12 @@ import java.util.List;
 
 public class KeyInputHandler
 {
-    public static final String KEY_CATEGORY_ICY_UTILITIES = "key.category.icyutilities.utils";
+    public static final String KEY_CATEGORY_BOAT_ALIGNMENT = "key.category.boatalignment.alignment";
 
-    public static final String KEY_ALIGN_PLAYER = "key.icyutilities.align",
-            KEY_HIGHLIGHT_PLAYERS = "key.icyutilities.highlight",
-            KEY_ORIENTATION_LOCK = "key.icyutilities.lockOrientation";
+    public static final String KEY_ALIGN_PLAYER = "key.boatalignment.align",
+            KEY_ORIENTATION_LOCK = "key.boatalignment.lockRotation";
 
-    public static KeyBinding alignKey, highlightKey, orientationLockKey;
+    public static KeyBinding alignKey, orientationLockKey;
 
     public static void register()
     {
@@ -32,21 +31,14 @@ public class KeyInputHandler
                 KEY_ALIGN_PLAYER,
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_O,
-                KEY_CATEGORY_ICY_UTILITIES
-        ));
-
-        highlightKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                KEY_HIGHLIGHT_PLAYERS,
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_H,
-                KEY_CATEGORY_ICY_UTILITIES
+                KEY_CATEGORY_BOAT_ALIGNMENT
         ));
 
         orientationLockKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 KEY_ORIENTATION_LOCK,
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_L,
-                KEY_CATEGORY_ICY_UTILITIES
+                KEY_CATEGORY_BOAT_ALIGNMENT
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(KeyInputHandler::registerKeyInputs);
@@ -65,20 +57,10 @@ public class KeyInputHandler
             }
         }
 
-        if (highlightKey.wasPressed())
-        {
-            IcyUtilitiesClient.isHighlightEnabled = !IcyUtilitiesClient.isHighlightEnabled;
-
-            Text state = IcyUtilitiesClient.isHighlightEnabled
-                    ? getPositiveMessage("ENABLED")
-                    : getNegativeMessage("DISABLED");
-            player.sendMessage(Texts.join(List.of(Text.of("SO highlight"), state), Text.of(" ")));
-        }
-
         if (orientationLockKey.wasPressed())
         {
-            IcyUtilitiesClient.isOrientationLocked = !IcyUtilitiesClient.isOrientationLocked;
-            Text state = !IcyUtilitiesClient.isOrientationLocked
+            BoatAlignment.isOrientationLocked = !BoatAlignment.isOrientationLocked;
+            Text state = !BoatAlignment.isOrientationLocked
                     ? getPositiveMessage("UNLOCKED")
                     : getNegativeMessage("LOCKED");
             player.sendMessage(Texts.join(List.of(Text.of("Orientation is"), state), Text.of(" ")));

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "icyutilities",
+  "id": "boatalignment",
   "version": "${version}",
 
-  "name": "Icy Utilities",
-  "description": "This is a mod that adds extra utilities to the game",
+  "name": "Boat Alignment",
+  "description": "This is a mod to help with aligning boats on ice bridges using keybinds",
   "authors": [
     "icy_turtle aka IncandescentTurtle"
   ],
@@ -14,12 +14,12 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "mod.icy_turtle.icyutilities.IcyUtilitiesClient"
+      "mod.icy_turtle.boatalignment.BoatAlignment"
     ]
   },
 
   "mixins": [
-    "icyutilities.mixins.json"
+    "boatalignment.mixins.json"
   ],
 
   "depends": {

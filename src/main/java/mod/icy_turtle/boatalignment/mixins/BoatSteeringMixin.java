@@ -1,4 +1,4 @@
-package mod.icy_turtle.icyutilities.mixins;
+package mod.icy_turtle.boatalignment.mixins;
 
 import net.minecraft.entity.vehicle.BoatEntity;
 import org.spongepowered.asm.mixin.Mixin;

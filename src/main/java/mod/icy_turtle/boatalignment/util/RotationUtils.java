@@ -1,6 +1,6 @@
-package mod.icy_turtle.icyutilities.util;
+package mod.icy_turtle.boatalignment.util;
 
-import mod.icy_turtle.icyutilities.IcyUtilitiesClient;
+import mod.icy_turtle.boatalignment.BoatAlignment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.vehicle.BoatEntity;
 
@@ -24,7 +24,7 @@ public class RotationUtils
 
     public static float roundToClosestLockAngle(float input)
     {
-        return Math.round(input/ IcyUtilitiesClient.ANGLE_TO_LOCK_AT)*IcyUtilitiesClient.ANGLE_TO_LOCK_AT;
+        return Math.round(input/ BoatAlignment.ANGLE_TO_LOCK_AT)* BoatAlignment.ANGLE_TO_LOCK_AT;
     }
 
     public static void lockToClosestLockAngle(Entity entity)
